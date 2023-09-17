@@ -1,0 +1,23 @@
+<header>
+  <nav>
+    <a href="/">Z-Blog</a>
+    <div class="nav-mobile-right">
+      <i class="bi bi-search search mobile-only"></i>
+      <i class="bi bi-list mobile-only" id="openMenu"></i>
+    </div>
+    <div class="auth-links" id="auth-links">
+      <i class="bi bi-x mobile-only" id="closeMenu"></i>
+      <a href="/auth/signup">Register</a>
+      <% if (user) { %>
+        <a href="/auth/logout">Logout</a>
+      <% } %>
+      <a href="/auth/login">Login</a>
+      <a href="/create-post" class="mobile-only">Create Post</a>
+    </div>
+    <div class="nav-links">
+      <i class="bi bi-search search"></i>
+      <a href="/create-post">Create Post</a>
+    </div>
+  </nav>
+</header>
+

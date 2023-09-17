@@ -1,0 +1,32 @@
+<%- include("nav") %>
+
+<section class="container">
+  <div class="author-info">
+    <% if (user) { %>
+      <% if (user.is_author) { %>
+        <img class="round-img" src="data:image/<%= user.image.contentType %>;base64,<%= user.image.data.toString('base64') %>" />
+      <% } %>
+      <p class="text-sm"><%= user.username %></p>
+    <% } %>
+  </div>
+
+  <div class="posts-list">
+  <% if (posts) { %>
+    <% posts.forEach(function(post) { %>
+    <article class="post-wrapper">
+      <img src="data:image/<%= post.thumbnail.contentType %>;base64,<%= post.thumbnail.data.toString('base64')%>" class="post-thumbnail" alt="post-thumbnail">
+      <span class="post-tag">Coding</span>
+      <div class="post-detail">
+        <legend class="post-title"><%= post.title %></legend>
+        <div class="timestamp">
+          <i class="bi bi-clock"></i>
+          <span class="post-date"><%= new Date(post.last_updated).toDateString() %></span>
+        </div>
+        <span class="author">by <%= post.author.username %></span>
+      </div>
+    </article>
+    <% }) %>
+  <% } %>
+  </div>
+</section>
+

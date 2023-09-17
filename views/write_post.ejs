@@ -1,0 +1,16 @@
+<%- include("nav.ejs") %>
+
+<div class="container">
+  <div class="write-post-container">
+    <h2>Write a post</h2>
+    <form action="" method="post" enctype="multipart/form-data" id="write-post-form">
+      <input type="text" name="post_title" id="post-title" required placeholder="Post Title...">
+      <input type="file" name="post-thumbnail" required>
+      <textarea id="tinymce-editor" name="post_body" class="mt-1"></textarea>
+      <button class="btn-full">Create Post</button>
+    </form>
+  </div>
+</div>
+
+<script type="application/javascript" src= "/tinymce/tinymce.min.js"></script>
+<script type="application/javascript" src= "/javascripts/tinymce-config.js"></script>

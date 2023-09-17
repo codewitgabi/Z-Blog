@@ -1,0 +1,43 @@
+<header>
+  <nav>
+    <a href="/">Z-Blog</a>
+    <div class="nav-mobile-right">
+      <i class="bi bi-search search mobile-only"></i>
+      <i class="bi bi-list mobile-only" id="openMenu"></i>
+    </div>
+    <div class="auth-links" id="auth-links">
+      <i class="bi bi-x mobile-only" id="closeMenu"></i>
+      <a href="/auth/signup">Register</a>
+      <% if (user) { %>
+        <a href="/auth/logout">Logout</a>
+      <% } %>
+      <a href="/auth/login">Login</a>
+      <a href="#!" class="mobile-only">Create Post</a>
+    </div>
+    <div class="nav-links">
+      <i class="bi bi-search search"></i>
+      <a href="#!">Create Post</a>
+    </div>
+  </nav>
+</header>
+
+
+<div class="container">
+  <div class="center">
+    <img alt="author-image" id="author-image-display">
+  </div>
+  <h2>Become an author</h2>
+  <p id="agreement">By checking the checkbox below, you agree to become an Author.</p>
+  <form action="" method="post" id="author-register-form" enctype="multipart/form-data">
+    <div class="form-flex">
+      <input type="checkbox" name="agree" id="agree" required="">
+      <span>I agree</span>
+    </div>
+     <%# <input type="file" name="image" id="image" required> %>
+     <div class="input_container">
+      <label for="files" class="btn">Browse Files</label>
+      <input id="files" name="image" required style="display:none;" type="file">
+    </div>
+    <button class="btn-full">Continue</button>
+  </form>
+</div>

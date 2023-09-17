@@ -1,0 +1,12 @@
+<div class="form-container">
+  <h2>Create an account</h2>
+  <% if (messages.error) { %>
+    <p class="error"><%= messages.error %></p>
+  <% } %>
+  <form action="" method="post">
+    <input type="text" name="username" id="username" placeholder="Username" required>
+    <input type="email" name="email" id="email" placeholder="Email" required>
+    <input type="password" name="password" id="password" placeholder="Password" required>
+    <button>Create Account</button>
+  </form>
+</div>
