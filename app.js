@@ -9,6 +9,11 @@ const flash = require("express-flash");
 const session = require("express-session");
 const passport = require("passport");
 const MongoStore = require("connect-mongo");
+const { xss } = require('express-xss-sanitizer');
+const cors = require("cors");
+const { rateLimit } = require('express-rate-limit')
+const helmet = require("helmet");
+
 const authRouter = require("./routes/authRouter");
 const postRouter = require("./routes/postRouter");
 const userRouter = require("./routes/userRouter");
@@ -50,6 +55,15 @@ app.use('/tinymce',
     path.join(__dirname, 'node_modules', 'tinymce')
   )
 );
+app.use(cors());
+app.use(xss());
+app.use(rateLimit({
+  windowMs: 30 * 60 * 1000,
+	limit: 100,
+	standardHeaders: 'draft-7',
+	legacyHeaders: false
+}));
+app.use(helmet());
 
 // Routers
 
