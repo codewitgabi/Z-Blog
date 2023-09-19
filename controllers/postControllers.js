@@ -3,6 +3,7 @@ const fs = require("fs");
 const Post = require("../models/Post");
 const User = require("../models/User");
 const Tag = require("../models/Tag");
+const { saveToCloud, cloudinary } = require("../utils/storage");
 
 
 const homePage = async (req, res, next) => {
@@ -46,21 +47,28 @@ const createPost = async (req, res) => {
   // create post and save to database.
 
   try {
-    await Post.create({
-      title: postTitle,
-      content,
-      thumbnail: {
-        data: fs.readFileSync(req.file.path),
-        contentType: req.file.mimetype
-      },
-      author: {
-        id: req.user._id,
-        username: req.user.username
-      },
-      tag: { name: "coding" }
-    })
+    cloudinary.uploader.upload(req.file.path, { timeout: 100000 }, async (err, result) => {
+      if (err) {
+        return res.json({ err })
+      } else {
+        try {
+          await Post.create({
+            title: postTitle,
+            content,
+            thumbnail: result.secure_url,
+            author: {
+              id: req.user._id,
+              username: req.user.username
+            },
+            tag: "coding"
+          })
 
-    return res.redirect("/");
+          return res.redirect("/");
+        } catch (err) {
+          throw new Error(err);
+        }
+      }
+      });
   } catch (err) {
     throw new Error(err.message)
   }

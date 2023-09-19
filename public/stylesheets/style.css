@@ -354,6 +354,10 @@ footer h3 {
   color: red;
   font-size: var(--font-size-sm)
 }
+.success {
+  color: green;
+  font-size: var(--font-size-sm);
+}
 .text-sm {
   font-size: var(--font-size-sm);
 }

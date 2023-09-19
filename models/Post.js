@@ -1,7 +1,6 @@
 const { Schema, model, ObjectId } = require("mongoose");
 const User = require("./User");
 const TagSchema = require("./Tag");
-require("express-async-errors");
 
 
 const PostShema = new Schema({
@@ -11,8 +10,10 @@ const PostShema = new Schema({
     required: true
   },
   thumbnail: {
-    data: Buffer,
-    contentType: String
+    type: String,
+    maxLength: 2034,
+    trim: true,
+    required: true
   },
   content: {
     type: String,
@@ -22,7 +23,13 @@ const PostShema = new Schema({
     id: ObjectId,
     username: String
   },
-  tag: TagSchema,
+  tag: {
+    type: String,
+    required: true,
+    trim: true,
+    maxLength: 15,
+    lowercase: true
+  },
   likes: [{}],
 }, {
   timestamps: {

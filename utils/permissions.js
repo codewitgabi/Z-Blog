@@ -48,6 +48,7 @@ const verifyAuth = (req, res, next) => {
               throw new Error(err.message);
           }
         } else {
+          print(decoded)
           req.user = User.findById(decoded.id);
           next();
         }

@@ -4,7 +4,7 @@
   <div class="author-info">
     <% if (user) { %>
       <% if (user.is_author) { %>
-        <img class="round-img" src="data:image/<%= user.image.contentType %>;base64,<%= user.image.data.toString('base64') %>" />
+        <img class="round-img" src="<%= user.image %>"  alt="<%= user._id %>"/>
       <% } %>
       <p class="text-sm"><%= user.username %></p>
     <% } %>
@@ -14,7 +14,7 @@
   <% if (posts) { %>
     <% posts.forEach(function(post) { %>
     <article class="post-wrapper">
-      <img src="data:image/<%= post.thumbnail.contentType %>;base64,<%= post.thumbnail.data.toString('base64')%>" class="post-thumbnail" alt="post-thumbnail">
+      <img src="<%= post.thumbnail %>" class="post-thumbnail" alt="post-thumbnail">
       <span class="post-tag">Coding</span>
       <div class="post-detail">
         <legend class="post-title"><%= post.title %></legend>

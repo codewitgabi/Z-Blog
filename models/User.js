@@ -20,8 +20,8 @@ const UserSchema = new Schema({
     required: true
   },
   image: {
-    data: Buffer,
-    contentType: String
+    type: String,
+    trim: true
   },
   is_active: {
     type: Boolean,

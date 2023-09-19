@@ -7,15 +7,13 @@ const { registerAuthorView, createAuthor } = require("../controllers/userControl
 // multer storage backend
 
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "./public/uploads/");
-  },
+  destination: "./public/uploads/",
   filename: (req, file, cb) => {
     cb(null, file.originalname)
   }
 })
 
-const upload = multer({ storage: storage });
+const upload = multer({ storage });
 
 
 /*

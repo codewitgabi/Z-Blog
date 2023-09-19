@@ -3,6 +3,9 @@
   <% if (messages.error) { %>
     <p class="error"><%= messages.error %></p>
   <% } %>
+  <% if (messages.success) { %>
+      <p class="success"><%= messages.success %></p>
+  <% } %>
   <form action="" method="post">
     <input type="email" name="email" id="email" placeholder="Email" required>
     <input type="password" name="password" id="password" placeholder="Password" required>

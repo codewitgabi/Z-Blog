@@ -6,6 +6,7 @@ const {
   createUser,
   loginView,
   logout,
+  activateAccount
 } = require("../controllers/userControllers");
 const { noauth_required, login_required } = require("../utils/permissions");
 
@@ -16,6 +17,10 @@ const { noauth_required, login_required } = require("../utils/permissions");
 router.route("/signup/")
   .get(noauth_required, signupView)
   .post(createUser)
+
+
+router.route("/account/activate/:userId")
+  .get(activateAccount)
 
 
 router.route("/login/")

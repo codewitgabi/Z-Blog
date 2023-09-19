@@ -10,9 +10,7 @@ const { login_required } = require("../utils/permissions");
 
 
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "./public/postThumbnails");
-  },
+  destination: "./public/postThumbnails",
   filename: (req, file, cb) => {
     cb(null, file.originalname);
   }
@@ -20,6 +18,7 @@ const storage = multer.diskStorage({
 
 
 const upload = multer({ storage: storage });
+
 
 /*
  * Url patterns
