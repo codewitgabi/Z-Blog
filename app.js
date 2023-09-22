@@ -78,12 +78,9 @@ app.use(function(req, res, next) {
   next(createError(404));
 });
 
-
-app.use((err, req, res, next) => {
-  if (err && err.statusCode) {
-    res.status(err.statusCode).json({ error: err.message })
-  }
-  next(err);
+// catch errors for api routes only.(mounting)
+app.use("/api", (err, req, res, next) => {
+  res.status(err.statusCode).json({ error: err.message })
 })
 
 // error handler

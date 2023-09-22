@@ -30,7 +30,8 @@
     "nodemailer": "^6.9.5",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
-    "tinymce": "^6.7.0"
+    "tinymce": "^6.7.0",
+    "validator": "^13.11.0"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"

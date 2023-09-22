@@ -101,14 +101,11 @@ const logout = (req, res, next) => {
 
 
 const registerAuthorView = (req, res) => {
-  /*
   if (req.isAuthenticated()) {
     if (req.user.is_author) {
       return res.redirect("/");
     }
   }
-
-  */
 
   let context = {
     pageTitle: "Z-Blog | Register Author",

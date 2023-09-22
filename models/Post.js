@@ -1,6 +1,7 @@
 const { Schema, model, ObjectId } = require("mongoose");
 const User = require("./User");
 const TagSchema = require("./Tag");
+const { isURL } = require("validator");
 
 
 const PostShema = new Schema({
@@ -13,7 +14,8 @@ const PostShema = new Schema({
     type: String,
     maxLength: 2034,
     trim: true,
-    required: true
+    required: true,
+    validate: [isURL, "{VALUE} is not a valid url"]
   },
   content: {
     type: String,

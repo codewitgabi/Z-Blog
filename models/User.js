@@ -1,4 +1,5 @@
 const { Schema, model, ObjectId } = require("mongoose");
+const { isEmail, isURL } = require("validator");
 
 
 const UserSchema = new Schema({
@@ -10,10 +11,10 @@ const UserSchema = new Schema({
   },
   email: {
     type: String,
-    match: [/^\w+@\w+\.\w+\.?\w*/, "Please enter a valid email address"], 
     trim: true,
     required: true,
-    unique: true
+    unique: true,
+    validate: [isEmail, "Please provided a valid email"]
   },
   password: {
     type: String,
@@ -21,7 +22,8 @@ const UserSchema = new Schema({
   },
   image: {
     type: String,
-    trim: true
+    trim: true,
+    validate: [isURL, "{VALUE} is not a valid url"]
   },
   is_active: {
     type: Boolean,
@@ -39,14 +41,6 @@ const UserSchema = new Schema({
   posts: [ObjectId]
 })
 
-/*
-UserSchema.aggregate.lookups({
-  from: "Post",
-  localField: "posts",
-  foreignField: "_id",
-  as: "written_posts"
-})
-*/
 
 module.exports = model("User", UserSchema);
 
