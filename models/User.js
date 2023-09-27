@@ -38,7 +38,10 @@ const UserSchema = new Schema({
     default: false
   },
   last_login: Date,
-  posts: [ObjectId]
+  posts: [{
+    type: ObjectId,
+    ref: "Post"
+  }]
 })
 
 

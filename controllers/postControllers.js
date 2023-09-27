@@ -16,7 +16,7 @@ const homePage = async (req, res, next) => {
   try {
     // fetch posts from database.
 
-    const posts = await Post.find({});
+    const posts = await Post.find({}).populate("author");
     console.log(posts);
     Object.assign(context, { posts })
 
@@ -53,16 +53,19 @@ const createPost = async (req, res) => {
         return res.json({ err })
       } else {
         try {
-          await Post.create({
+          const newPost = await Post.create({
             title: postTitle,
             content,
             thumbnail: result.secure_url,
-            author: {
-              id: req.user._id,
-              username: req.user.username
-            },
+            author: req.user._id,
             tag: "coding"
           })
+
+          // add this new post to users posts.
+
+          const author = await User.findByIdAndUpdate(req.user._id);
+          author.posts.push(newPost._id);
+          await author.save();
 
           return res.redirect("/");
         } catch (err) {

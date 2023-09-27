@@ -22,8 +22,8 @@ const PostShema = new Schema({
     required: true
   },
   author: {
-    id: ObjectId,
-    username: String
+    type: ObjectId,
+    ref: "User"
   },
   tag: {
     type: String,

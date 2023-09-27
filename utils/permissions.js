@@ -34,26 +34,14 @@ const verifyAuth = (req, res, next) => {
   if (token[0] !== "Bearer") {
     throw new BadRequestError("Cannot parse authorization headers");
   } else {
-    jwt.verify(
-      token[1],
-      process.env.JWT_SECRET_KEY,
-      function (err, decoded) {
-        if (err) {
-          switch (err) {
-            case "TokenExpiredError":
-              throw new Error("Provided token has expired and is no longer valid");
-            case "JsonWebTokenError":
-              throw new Error("Invalid JWT token");
-            case "NotBeforeError":
-              throw new Error(err.message);
-          }
-        } else {
-          print(decoded)
-          req.user = User.findById(decoded.id);
-          next();
-        }
+    jwt.verify(token[1], process.env.JWT_SECRET_KEY, async function (err, decoded) {
+      if (err) {
+        return res.status(400).json({ error: err.message })
+      } else {
+        req.user = await User.findById(decoded.id);
+        next();
       }
-    );
+    });
   }
 };
 

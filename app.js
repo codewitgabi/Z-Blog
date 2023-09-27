@@ -56,14 +56,14 @@ app.use('/tinymce',
   )
 );
 app.use(cors());
-app.use(xss());
-app.use(rateLimit({
+//app.use(xss());
+/*app.use(rateLimit({
   windowMs: 30 * 60 * 1000,
 	limit: 100,
 	standardHeaders: 'draft-7',
 	legacyHeaders: false
-}));
-app.use(helmet());
+}));*/
+//app.use(helmet());
 
 // Routers
 
@@ -79,7 +79,7 @@ app.use(function(req, res, next) {
 });
 
 // catch errors for api routes only.(mounting)
-app.use("/api", (err, req, res, next) => {
+app.use((err, req, res, next) => {
   res.status(err.statusCode).json({ error: err.message })
 })
 
