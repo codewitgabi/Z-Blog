@@ -29,7 +29,7 @@ closeMenu.addEventListener("click", () => {
 const file = document.getElementById("image");
 const img = document.getElementById("author-image-display");
 
-file.addEventListener("change", (e) => {
+file?.addEventListener("change", (e) => {
   const f = e.target.files[0]
   const reader = new FileReader();
   reader.onload = function () {

@@ -17,7 +17,6 @@ const homePage = async (req, res, next) => {
     // fetch posts from database.
 
     const posts = await Post.find({}).populate("author");
-    console.log(posts);
     Object.assign(context, { posts })
 
     return res.render("index", context);

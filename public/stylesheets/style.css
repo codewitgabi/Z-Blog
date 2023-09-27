@@ -205,6 +205,7 @@ nav a {
 }
 .post-thumbnail {
   height: inherit;
+  object-fit: cover;
   transition: .25s;
 }
 .post-title {
